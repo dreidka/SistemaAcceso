@@ -35,7 +35,10 @@
                         $estado=$row['Estado'];
                     }
                 }else{
-                    echo "Deseas ingresar usuario nuevo?";
+                    echo "Usuario no registrado";
+                    $name=null;
+                    $rol=null;
+                    $estado=null;
                 }
             }
             $con->close();

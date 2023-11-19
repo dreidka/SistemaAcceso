@@ -52,14 +52,14 @@
                 ?>
                 </tbody>
             </table>
-   
+        
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
                     <video id="preview" width="100%"></video>                    
                 </div>
                 <div class="col-md-6">
-                    <form action="insert.php" method="post" class="form-horizontal">
+                    <form action="index.php" method="post" class="form-horizontal">
                         <label>SCAN QR CODE</label>
                         <input type="text" name="text" id="txt1" placeholder="scann qr" class="from-control">
                     </form>
@@ -87,5 +87,81 @@
 
             });
         </script>
+        <div class="d-flex">
+        <div class="card col-sm-6">
+        <div class="card-body">
+        <form method="post" action="acceso.php">
+        <?php
+            $server = "localhost";
+            $username = "root";
+            $password = "";
+            $dbname = "qr_basedatos";
+
+            $con = new mysqli($server,$username,$password,$dbname);
+        
+            if($con->connect_error){
+                die("Connection failed" .$con->connect_error);
+            }
+            if(isset($_POST['text'])){
+                $text = $_POST['text'];
+                $name;
+                $rol;
+                $estado;
+                $sql = "SELECT Nombre,IdRol,Estado FROM usuario WHERE IdUsuario ='$text'";
+                $con = $con->query($sql);
+                if( $con->num_rows>0){
+                    echo "Usuario registrado";
+                    while($row = $con->fetch_array()){
+                        $name=$row['Nombre'];
+                        $rol=$row['IdRol'];
+                        $estado=$row['Estado'];
+                    }
+                }else{
+                    echo "Usuario no registrado";
+                    $name=null;
+                    $rol=4;
+                    $estado=1;
+                }
+            }
+            $con->close();
+        ?>
+        <div class="form-group">
+            <label>Id</label>
+            <input type="text" name="txtID" value="<?php echo $text?>" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" name="txtNombre" value="<?php echo $name?>" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Rol</label>
+            <input type="text" name="txtRol" value="<?php echo $rol?>" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Estado</label>
+            <input type="text" name="txtEstado" value="<?php echo $estado?>" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Estado</label>
+            <select name="opcLlegada" class="form-control">                   
+                <option>Camina</option>
+                <option>Moto</option>
+                <option>Carro</option>
+            </select>  
+        </div>
+        <div class="form-group">
+            <label>Placa</label>
+            <input type="text" name="txtPlaca"class="form-control" name="txtPlaca">
+        </div>
+        <br>
+        <button name="actualizar" onclick="window.location.reload()" class="btn btn-primary">Actualizar</button>
+        <button name="eliminar" class="btn btn-danger">Eliminar</button>
+
+        </form>
+         
+
+        </div>
+        </div>
+        </div>
     </body>
 </html>
