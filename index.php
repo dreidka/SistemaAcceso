@@ -7,6 +7,7 @@
 
     </head>
     <body>
+        <div class="conteiner">
             <table class="table table-bordered">
                 <thead>
                     <tr>
@@ -52,7 +53,10 @@
                 ?>
                 </tbody>
             </table>
-        
+        <a style="text-align: center; display: inline-block;" href="reportes.php" class="btn btn-primary">Reportes PDF</a>
+        </div>
+        <br>
+        <br>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
