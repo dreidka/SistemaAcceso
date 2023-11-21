@@ -65,7 +65,7 @@
                     }
                     
                 }
-                header("location: index.php");
+                header("location: entrada1.php");
                
             }
             if(isset($_POST['eliminar'])){
