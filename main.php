@@ -16,7 +16,9 @@
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-link active" aria-current="page" href="#">Entrada 1</a>
-            <a class="nav-link" href="reportes.php">Reportes</a>
+            <a class="nav-link" href="#">Entrada 2</a>
+            <a class="nav-link" href="#">Entrada 3</a>
+            <a class="nav-link" href="#">Entrada 4</a>
         </div>
         </div>
     </div>
@@ -67,7 +69,7 @@
                 ?>
                 </tbody>
             </table>
-        <a style="text-align: center; display: inline-block;" href="reportespdf.php" class="btn btn-primary">Reportes PDF</a>
+        <a style="text-align: center; display: inline-block;" href="reportes.php" class="btn btn-primary">Reportes PDF</a>
         </div>
         <br>
         <br>
