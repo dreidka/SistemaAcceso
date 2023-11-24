@@ -15,10 +15,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="entrada1.php">Entrada 1</a>
+            <a class="nav-link active" aria-current="page" href="entrada2.php">Entrada 2</a>
             <a class="nav-link" href="reportes.php">Reportes</a>
             <a class="btn btn-danger" href="index.php">Salir</a>
-
         </div>
         </div>
     </div>
@@ -51,7 +50,8 @@
                     if($con2->connect_error){
                         die("Connection failed" .$con2->connect_error);
                     }
-                    $sql2 = "SELECT * from entrada1";
+                    //CAMBIAR
+                    $sql2 = "SELECT * from entrada2";
                     $query2 = $con2->query($sql2);
                     while($row= $query2->fetch_assoc()){
                     ?>
@@ -83,7 +83,9 @@
                     <video id="preview" width="100%"></video>                    
                 </div>
                 <div class="col-md-6">
-                    <form action="entrada1.php" method="post" class="form-horizontal">
+                    <!-- CAMBIAR -->
+
+                    <form action="entrada2.php" method="post" class="form-horizontal">
                         <label>SCAN QR CODE</label>
                         <input type="text" name="text" id="txt1" placeholder="scann qr" class="from-control">
                     </form>
@@ -159,7 +161,7 @@
         </div>
         <div class="form-group">
             <label>Rol</label>
-            <input type="text" name="txtRol" value="<?php echo $rol?>" class="form-control" readonly>
+            <input type="text" name="txtRol" value="<?php echo $rol?>" class="form-control">
             <label>1.Administrativo</label>
             <label>2.Estudiante</label>
             <label>3.Docente</label>
@@ -167,15 +169,17 @@
         </div>
         <div class="form-group">
             <label>Entrada</label>
-            <input type="text" name="txtEntrada" value=1 class="form-control" readonly>
+            <!-- CAMBIAR -->
+            <input type="text" name="txtEntrada" value=2 class="form-control">
         </div>
         <div class="form-group">
             <label>Salida</label>
-            <input type="text" name="txtSalida" value=1 class="form-control" readonly>
+            <!-- CAMBIAR -->
+            <input type="text" name="txtSalida" value=2 class="form-control">
         </div>
         <div class="form-group">
             <label>Estado</label>
-            <input type="text" name="txtEstado" value="<?php echo $estado?>" class="form-control" readonly>
+            <input type="text" name="txtEstado" value="<?php echo $estado?>" class="form-control">
         </div>
         <div class="form-group">
             <label>Llegada</label>
