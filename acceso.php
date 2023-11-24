@@ -18,7 +18,7 @@
                         $query = $con->query($sql);
                         
                     }else{
-                        $sql = "INSERT INTO acceso (IdUsuario,HoraEntrada,Nombre,FormaLlegada,Placa,Entrada,Estado) values('$txtID',now(),'$txtName','$llegada','$placa','$entrada','$estado')";
+                        $sql = "INSERT INTO acceso (IdUsuario,HoraEntrada,Nombre,FormaLlegada,Placa,Entrada,Estado) values('$txtID','$fecha_actual','$txtName','$llegada','$placa','$entrada','$estado')";
                         $conn = $con->query($sql);
                         if($conn===TRUE){
                             echo "Usuario registrado";
