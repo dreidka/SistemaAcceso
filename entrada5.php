@@ -1,13 +1,16 @@
 <html>
     <head>
-
+    <?php
+session_start();
+$user = $_SESSION['username'];
+?>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,7 +20,9 @@
         <div class="navbar-nav">
             <a class="nav-link active" aria-current="page" href="entrada5.php">Entrada 5</a>
             <a class="nav-link" href="reportes.php">Reportes</a>
+            <a class="nav-link" href="vehiculos.php">Vehiculos</a>
             <a class="btn btn-danger" href="index.php">Salir</a>
+
         </div>
         </div>
     </div>
@@ -89,34 +94,7 @@
                         <label>SCAN QR CODE</label>
                         <input type="text" name="text" id="txt1" placeholder="scann qr" class="from-control">
                     </form>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
-            
-            Instascan.Camera.getCameras().then(function (cameras){
-                if(cameras.length>0){
-                    scanner.start(cameras[0]);
-                }else{
-                    console.error('No cameras found.');
-                    alert('No cameras found.');
-                }
-            }).catch(function(e){
-                console.error(e);
-                alert(e);
-            });
-            scanner.addListener('scan',function(content){
-                document.getElementById('txt1').value=content; 
-                //window.location.href=content;
-                document.forms[0].submit();
-
-            });
-        </script>
-        <div class="d-flex">
-        <div class="card col-sm-6">
-        <div class="card-body">
-        <form method="post" action="acceso.php">
+                    <form method="post" action="acceso.php">
         <?php
             $server = "localhost";
             $username = "root";
@@ -163,7 +141,7 @@
         </div>
         <div class="form-group">
             <label>Correo</label>
-            <input type="text" name="txtCorreo" value=<?php echo $correo?> class="form-control" readonly>
+            <input type="text" name="txtCorreo" value="<?php echo $correo?>" class="form-control" readonly>
         </div>
         <div class="form-group">
             <label>Rol</label>
@@ -205,11 +183,29 @@
         <button name="eliminar" class="btn btn-danger">Eliminar</button>
 
         </form>
-         
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
+            
+            Instascan.Camera.getCameras().then(function (cameras){
+                if(cameras.length>0){
+                    scanner.start(cameras[0]);
+                }else{
+                    console.error('No cameras found.');
+                    alert('No cameras found.');
+                }
+            }).catch(function(e){
+                console.error(e);
+                alert(e);
+            });
+            scanner.addListener('scan',function(content){
+                document.getElementById('txt1').value=content; 
+                //window.location.href=content;
+                document.forms[0].submit();
 
-        </div>
-        </div>
-        </div>
-        
+            });
+        </script>
     </body>
 </html>

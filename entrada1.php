@@ -1,4 +1,8 @@
 <html>
+<?php
+session_start();
+$user = $_SESSION['username'];
+?>
     <head>
 
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
@@ -17,6 +21,7 @@
         <div class="navbar-nav">
             <a class="nav-link active" aria-current="page" href="entrada1.php">Entrada 1</a>
             <a class="nav-link" href="reportes.php">Reportes</a>
+            <a class="nav-link" href="vehiculos.php">Vehiculos</a>
             <a class="btn btn-danger" href="index.php">Salir</a>
 
         </div>
@@ -87,34 +92,7 @@
                         <label>SCAN QR CODE</label>
                         <input type="text" name="text" id="txt1" placeholder="scann qr" class="from-control">
                     </form>
-                </div>
-            </div>
-        </div>
-        <script type="text/javascript">
-            var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
-            
-            Instascan.Camera.getCameras().then(function (cameras){
-                if(cameras.length>0){
-                    scanner.start(cameras[0]);
-                }else{
-                    console.error('No cameras found.');
-                    alert('No cameras found.');
-                }
-            }).catch(function(e){
-                console.error(e);
-                alert(e);
-            });
-            scanner.addListener('scan',function(content){
-                document.getElementById('txt1').value=content; 
-                //window.location.href=content;
-                document.forms[0].submit();
-
-            });
-        </script>
-        <div class="d-flex">
-        <div class="card col-sm-6">
-        <div class="card-body">
-        <form method="post" action="acceso.php">
+                    <form method="post" action="acceso.php">
         <?php
             $server = "localhost";
             $username = "root";
@@ -161,7 +139,7 @@
         </div>
         <div class="form-group">
             <label>Correo</label>
-            <input type="text" name="txtCorreo" value=<?php echo $correo?> class="form-control" readonly>
+            <input type="text" name="txtCorreo" value="<?php echo $correo?>" class="form-control" readonly>
         </div>
         <div class="form-group">
             <label>Rol</label>
@@ -190,6 +168,7 @@
                 <option>Moto</option>
                 <option>Carro</option>
                 <option>Bicicleta</option>
+                <option>Acompañante</option>
             </select>  
         </div>
         <div class="form-group">
@@ -201,11 +180,31 @@
         <button name="eliminar" class="btn btn-danger">Eliminar</button>
 
         </form>
-         
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            var scanner = new Instascan.Scanner({ video: document.getElementById('preview'), scanPeriod: 5, mirror: false });
+            
+            Instascan.Camera.getCameras().then(function (cameras){
+                if(cameras.length>0){
+                    scanner.start(cameras[0]);
+                }else{
+                    console.error('No cameras found.');
+                    alert('No cameras found.');
+                }
+            }).catch(function(e){
+                console.error(e);
+                alert(e);
+            });
+            scanner.addListener('scan',function(content){
+                document.getElementById('txt1').value=content; 
+                //window.location.href=content;
+                document.forms[0].submit();
 
-        </div>
-        </div>
-        </div>
+            });
+        </script>
+
         
     </body>
 </html>

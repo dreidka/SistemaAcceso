@@ -27,18 +27,23 @@ if(isset($_POST['submit'])){
         $_SESSION['username'] = $user;
         header('location:main.php');
     }else if($consulta1->num_rows>0){
+        //
         $_SESSION['username'] = $user;
         header('location:entrada1.php');
     }else if($consulta2->num_rows>0){
+        //
         $_SESSION['username'] = $user;
         header('location:entrada2.php');   
     }else if($consulta3->num_rows>0){
+        //
         $_SESSION['username'] = $user;
         header('location:entrada3.php');
     }else if($consulta4->num_rows>0){
+        //
         $_SESSION['username'] = $user;
         header('location:entrada4.php');
     }else if($consulta5->num_rows>0){
+        //
         $_SESSION['username'] = $user;
         header('location:entrada5.php');
     }

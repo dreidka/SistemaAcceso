@@ -20,6 +20,7 @@
             <a class="nav-link" href="entrada2.php">Entrada 2</a>
             <a class="nav-link" href="entrada3.php">Entrada 3</a>
             <a class="nav-link" href="entrada4.php">Entrada 4</a>
+            <a class="nav-link" href="entrada5.php">Entrada 5</a>
         </div>
         </div>
     </div>

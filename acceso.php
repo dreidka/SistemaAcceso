@@ -17,6 +17,14 @@
                     if($query->num_rows>0){
                         $sql = "UPDATE acceso SET HoraSalida=NOW(), Estado = '0', Salida = '$salida' WHERE IdUsuario = '$txtID' and Estado = '1'";
                         $query = $con->query($sql);
+
+                        //
+                        $consultavehiculo = $con->query("SELECT v.IdVehiculo, v.TipoVehiculo, u.IdUsuario,v.Placa , v.Entrada, v.Salida, v.Estado FROM vehiculo v join usuario u on u.IdUsuario = v.IdUsuario join acceso a on a.IdUsuario = u.IdUsuario where v.Estado='1' and v.IdUsuario = '$txtID' and a.Placa = v.Placa");
+                        if($consultavehiculo->num_rows>0){
+                            $sqlUpdateVehiculo = "UPDATE vehiculo SET Estado = '0', Salida = '$salida' WHERE IdUsuario = '$txtID' and Estado = '1'";
+                            $query = $con->query($sqlUpdateVehiculo);
+                        }
+                        //
                         $texto = "Se le informa al usuario ".$txtName." que Salio por la salida ". $salida. " de la institucion universidad francisco jose de caldas a las ".$time. " del dia ".$date;
                         $asunto = $_POST['txtAsunto'] ;
                         //$correo = "Papercut@papercut.com";
@@ -27,6 +35,12 @@
                         $mail = mail($from, $asunto, $texto, $cabeceras);
                     }else{
                         $sql = "INSERT INTO acceso (IdUsuario,HoraEntrada,Nombre,FormaLlegada,Placa,Entrada,Estado) values('$txtID',now(),'$txtName','$llegada','$placa','$entrada','$estado')";
+                        if($llegada != 'Camina' and $llegada!='Acompañante'){
+                            $sqlInsertVehiculo = $con->query("INSERT INTO vehiculo (TipoVehiculo,IdUsuario,Placa,Entrada,Estado) values('$llegada','$txtID','$placa','$entrada',1)");
+                            if($sqlInsertVehiculo==true){
+                                echo "Vehiculo Registrado";
+                            }
+                        }
                         $conn = $con->query($sql);
                         $texto = "Se le informa al usuario ".$txtName." que Ingreso por la entrada ". $entrada. " de la institucion universidad francisco jose de caldas a las ".$time. " del dia ".$date;
                         $asunto = $_POST['txtAsunto'] ;
@@ -52,6 +66,14 @@
                     if($query->num_rows>0){
                         $sql = "UPDATE acceso SET HoraSalida=NOW(), Estado = '0', Salida = '$salida' WHERE IdUsuario = '$txtID' and Estado = '1'";
                         $query = $con->query($sql);
+
+                        //
+                        $consultavehiculo = $con->query("SELECT v.IdVehiculo, v.TipoVehiculo, u.IdUsuario,v.Placa , v.Entrada, v.Salida, v.Estado FROM vehiculo v join usuario u on u.IdUsuario = v.IdUsuario join acceso a on a.IdUsuario = u.IdUsuario where v.Estado='1' and v.IdUsuario = '$txtID' and a.Placa = v.Placa");
+                        if($consultavehiculo->num_rows>0){
+                            $sqlUpdateVehiculo = "UPDATE vehiculo SET Estado = '0', Salida = '$salida' WHERE IdUsuario = '$txtID' and Estado = '1'";
+                            $query = $con->query($sqlUpdateVehiculo);
+                        }
+                        //
                         $texto = "Se le informa al usuario ".$txtName." que Salio por la salida ". $salida. " de la institucion universidad francisco jose de caldas a las ".$time. " del dia ".$date;
                         $asunto = $_POST['txtAsunto'] ;
                         //$correo = "Papercut@papercut.com";
@@ -62,8 +84,13 @@
                         $mail = mail($from, $asunto, $texto, $cabeceras);
                     }else{
                         $sql = "INSERT INTO acceso (IdUsuario,HoraEntrada,Nombre,FormaLlegada,Placa,Entrada,Estado) values('$txtID',now(),'$txtName','$llegada','$placa','$entrada','$estado')";
+                        if($llegada != 'Camina' and $llegada!='Acompañante'){
+                            $sqlInsertVehiculo = $con->query("INSERT INTO vehiculo (TipoVehiculo,IdUsuario,Placa,Entrada,Estado) values('$llegada','$txtID','$placa','$entrada',1)");
+                            if($sqlInsertVehiculo==true){
+                                echo "Vehiculo Registrado";
+                            }
+                        }
                         $conn = $con->query($sql);
-                        $query = $con->query($sql);
                         $texto = "Se le informa al usuario ".$txtName." que Ingreso por la entrada ". $entrada. " de la institucion universidad francisco jose de caldas a las ".$time. " del dia ".$date;
                         $asunto = $_POST['txtAsunto'] ;
                         //$correo = "Papercut@papercut.com";

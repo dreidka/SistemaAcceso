@@ -2,7 +2,19 @@
 <?php
 require 'conexion.php';
 session_start();
+
 $user = $_SESSION['username'];
+if($user == 'user1'){
+    $bandera = 1;
+}elseif($user == 'user2'){
+    $bandera = 2;
+}elseif($user == 'user3'){
+    $bandera = 3;
+}elseif($user == 'user4'){
+    $bandera = 4;
+}elseif($user == 'user5'){
+    $bandera = 5;
+}
 $consulta = "SELECT correo FROM empleado where username='$user'";
 $qConsulta = $con->query($consulta);
 while($row = $qConsulta->fetch_assoc()){
@@ -40,7 +52,19 @@ if(isset($_POST['enviar'])){
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a class="nav-link active" aria-current="page" href="#">Entrada 1</a>
+        <?php
+            if($bandera==1){
+               echo "<a class='nav-link active' aria-current='page' href='entrada1.php'>Entrada</a>";
+            }elseif($bandera==2){
+                echo "<a class='nav-link active' aria-current='page' href='entrada2.php'>Entrada</a>";
+            }elseif($bandera ==3){
+                echo "<a class='nav-link active' aria-current='page' href='entrada3.php'>Entrada</a>";
+            }elseif($bandera==4){
+                echo "<a class='nav-link active' aria-current='page' href='entrada4.php'>Entrada</a>";
+            }elseif($bandera==5){
+                echo "<a class='nav-link active' aria-current='page' href='entrada5.php'>Entrada</a>";
+            }
+            ?>
             <a class="nav-link" href="reportes.php">Reportes</a>
             <a class="btn btn-danger" href="index.php">Salir</a>
 
