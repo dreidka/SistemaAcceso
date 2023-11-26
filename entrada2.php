@@ -51,7 +51,7 @@
                         die("Connection failed" .$con2->connect_error);
                     }
                     //CAMBIAR
-                    $sql2 = "SELECT * from entrada2";
+                    $sql2 = "SELECT * from acceso2";
                     $query2 = $con2->query($sql2);
                     while($row= $query2->fetch_assoc()){
                     ?>
@@ -133,7 +133,8 @@
                 $name;
                 $rol;
                 $estado;
-                $sql = "SELECT Nombre,IdRol,Estado FROM usuario WHERE IdUsuario ='$text'";
+                $correo;
+                $sql = "SELECT Nombre,IdRol,Estado,Correo FROM usuario WHERE IdUsuario ='$text'";
                 $con = $con->query($sql);
                 if( $con->num_rows>0){
                     echo "Usuario registrado";
@@ -141,6 +142,7 @@
                         $name=$row['Nombre'];
                         $rol=$row['IdRol'];
                         $estado=$row['Estado'];
+                        $correo=$row['Correo'];
                     }
                 }else{
                     echo "Usuario no registrado";
@@ -160,8 +162,12 @@
             <input type="text" name="txtNombre" value="<?php echo $name?>" class="form-control">
         </div>
         <div class="form-group">
+            <label>Correo</label>
+            <input type="text" name="txtCorreo" value=<?php echo $correo?> class="form-control" readonly>
+        </div>
+        <div class="form-group">
             <label>Rol</label>
-            <input type="text" name="txtRol" value="<?php echo $rol?>" class="form-control">
+            <input type="text" name="txtRol" value="<?php echo $rol?>" class="form-control" readonly>
             <label>1.Administrativo</label>
             <label>2.Estudiante</label>
             <label>3.Docente</label>
@@ -170,16 +176,16 @@
         <div class="form-group">
             <label>Entrada</label>
             <!-- CAMBIAR -->
-            <input type="text" name="txtEntrada" value=2 class="form-control">
+            <input type="text" name="txtEntrada" value=2 class="form-control" readonly>
         </div>
         <div class="form-group">
             <label>Salida</label>
             <!-- CAMBIAR -->
-            <input type="text" name="txtSalida" value=2 class="form-control">
+            <input type="text" name="txtSalida" value=2 class="form-control" readonly>
         </div>
         <div class="form-group">
             <label>Estado</label>
-            <input type="text" name="txtEstado" value="<?php echo $estado?>" class="form-control">
+            <input type="text" name="txtEstado" value="<?php echo $estado?>" class="form-control" readonly>
         </div>
         <div class="form-group">
             <label>Llegada</label>
@@ -187,6 +193,7 @@
                 <option>Camina</option>
                 <option>Moto</option>
                 <option>Carro</option>
+                <option>Bicicleta</option>
             </select>  
         </div>
         <div class="form-group">
