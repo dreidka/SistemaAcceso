@@ -21,6 +21,8 @@
             <a class="nav-link" href="entrada3.php">Entrada 3</a>
             <a class="nav-link" href="entrada4.php">Entrada 4</a>
             <a class="nav-link" href="entrada5.php">Entrada 5</a>
+            <a class="btn btn-danger" href="index.php">Salir</a>
+
         </div>
         </div>
     </div>
