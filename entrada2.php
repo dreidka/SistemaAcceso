@@ -131,9 +131,9 @@ $user = $_SESSION['username'];
             }
             $con->close();
         ?>
-        <div class="form-group">
+       <div class="form-group">
             <label>Id</label>
-            <input type="text" name="txtID" value="<?php echo $text?>" class="form-control">
+            <input type="text" name="txtID" value="<?php echo $text?>" class="form-control" readonly>
         </div>
         <div class="form-group">
             <label>Nombre</label>
@@ -141,7 +141,7 @@ $user = $_SESSION['username'];
         </div>
         <div class="form-group">
             <label>Correo</label>
-            <input type="text" name="txtCorreo" value="<?php echo $correo?>" class="form-control" readonly>
+            <input type="text" name="txtCorreo" value="<?php echo $correo?>" class="form-control" >
         </div>
         <div class="form-group">
             <label>Rol</label>
@@ -172,6 +172,7 @@ $user = $_SESSION['username'];
                 <option>Moto</option>
                 <option>Carro</option>
                 <option>Bicicleta</option>
+                <option>Acompañante</option>
             </select>  
         </div>
         <div class="form-group">

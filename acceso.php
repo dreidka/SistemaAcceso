@@ -148,13 +148,27 @@
                 }
             }
             if(isset($_POST['eliminar'])){
-                $sqlEliminar = "DELETE FROM acceso";
-                $queryEliminar = $con->query($sqlEliminar);
-                if($queryEliminar===TRUE){
-                    echo "Registros Eliminados";
-                }else{
-                    echo "No se pueden eliminar";
+                $entrada = $_POST['txtEntrada'];
+                echo "Estas seguro de eliminar los registros?";?>
+
+                <form action="acceso.php" method="post">
+                <button name='Conservar' onclick='window.location.reload()' class='btn btn-primary'>Conservar</button>
+                <button name='confirmacion' class='btn btn-danger'>Eliminar</button>
+                </form>
+
+        <?php
+                if(isset($_POST['confirmacion'])){
+                    $sqlEliminar = "DELETE FROM acceso where Entrada = '$entrada'";
+                    $queryEliminar = $con->query($sqlEliminar);
+                    if($queryEliminar===TRUE){
+                        echo "Registros Eliminados";
+                    }else{
+                        echo "No se pueden eliminar";
+                    }
+                }elseif(isset($_POST['Conservar'])){
+                    header("location: entrada".$entrada.".php");
                 }
+                
             }
             $con->close();
 ?>

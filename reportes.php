@@ -2,7 +2,8 @@
 <?php
 require 'conexion.php';
 session_start();
-
+date_default_timezone_set('UTC');
+$asunto = "Reporte del dia ".date("d/m/Y G:i:s");
 $user = $_SESSION['username'];
 if($user == 'user1'){
     $bandera = 1;
@@ -66,6 +67,8 @@ if(isset($_POST['enviar'])){
             }
             ?>
             <a class="nav-link" href="reportes.php">Reportes</a>
+            <a class="nav-link" href="vehiculos.php">Vehiculos</a>
+
             <a class="btn btn-danger" href="index.php">Salir</a>
 
         </div>
@@ -78,7 +81,7 @@ if(isset($_POST['enviar'])){
     <div class="card-body">
     <div class="mb-3">
   <label for="txtAsunto" class="form-label">Asunto</label>
-  <input type="text" class="form-control" name="txtAsunto" placeholder="Asunto">
+  <input type="text" class="form-control" name="txtAsunto" value="<?php echo $asunto?>">
 </div>
 <div class="mb-3">
   <label for="txtTexto" class="form-label">Texto</label>

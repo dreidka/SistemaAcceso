@@ -44,6 +44,7 @@ if($user == 'user1'){
             ?>
             
             <a class="nav-link" href="reportes.php">Reportes</a>
+            <a class="nav-link" href="vehiculos.php">Vehiculos</a>
             <a class="btn btn-danger" href="index.php">Salir</a>
 
         </div>
@@ -104,4 +105,19 @@ if($user == 'user1'){
                 </tbody>
             </table>
                 </body>
+                <form action="vehiculos.php" method="post">
+                <button name="eliminar" class="btn btn-danger">Eliminar</button>
+
+                </form>
+                <?php
+                    if(isset($_POST['eliminar'])){
+                        $sqlEliminar = "DELETE FROM vehiculo where Entrada = '$bandera'";
+                        $queryEliminar = $con2->query($sqlEliminar);
+                        if($queryEliminar===TRUE){
+                            echo "Registros Eliminados";
+                        }else{
+                            echo "No se pueden eliminar";
+                        }
+                    }
+                ?>
 </html>
